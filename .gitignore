@@ -4,7 +4,7 @@
 /.idea/caches
 /.idea/shelf
 /.idea/libraries
-/.idea/*.xml
+/.idea/**/*.xml
 .DS_Store
 /build
 /captures
