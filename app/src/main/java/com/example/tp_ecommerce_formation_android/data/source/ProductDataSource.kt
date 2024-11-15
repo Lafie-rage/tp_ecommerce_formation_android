@@ -111,4 +111,5 @@ object ProductDataSource {
         return products
     }
 
+    fun getById(id: UUID): ProductDto? = products.find { it.id == id }
 }
