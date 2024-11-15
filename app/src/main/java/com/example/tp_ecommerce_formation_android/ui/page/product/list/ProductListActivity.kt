@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tp_ecommerce_formation_android.R
 import com.example.tp_ecommerce_formation_android.data.source.ProductDataSource
+import com.example.tp_ecommerce_formation_android.domain.mapper.toProduct
 
 class ProductListActivity : AppCompatActivity() {
 
@@ -13,7 +14,7 @@ class ProductListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_list)
 
-        val products = ProductDataSource.getProducts()
+        val products = ProductDataSource.getProducts().map { it.toProduct() }
 
         findViewById<RecyclerView>(R.id.product_list).apply {
             // Apply permet de modifier l'objet sur lequel on l'utilise
