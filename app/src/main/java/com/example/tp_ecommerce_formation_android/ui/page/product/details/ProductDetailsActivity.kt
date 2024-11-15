@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import com.example.tp_ecommerce_formation_android.R
 import com.example.tp_ecommerce_formation_android.data.source.ProductDataSource
 import com.example.tp_ecommerce_formation_android.databinding.ActivityProductDetailsBinding
@@ -12,6 +13,9 @@ import com.example.tp_ecommerce_formation_android.domain.mapper.toProductDetails
 import com.example.tp_ecommerce_formation_android.ui.page.product.details.state.ProductDetails
 import java.text.NumberFormat
 import java.util.Locale
+import java.util.UUID
+
+const val PRODUCT_ID_EXTRA_KEY = "PRODUCT_ID"
 
 class ProductDetailsActivity : AppCompatActivity() {
 
@@ -23,11 +27,21 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding = ActivityProductDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val productId = ProductDataSource.getProducts()[0].id
+
+        val productId =
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                intent.getSerializableExtra(PRODUCT_ID_EXTRA_KEY, UUID::class.java)!!
+            } else {
+                intent.getSerializableExtra(PRODUCT_ID_EXTRA_KEY)!! as UUID
+            }
 
         val product = ProductDataSource.getById(productId)!!.toProductDetails()
 
         bind(product)
+
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     private fun bind(product: ProductDetails) {
@@ -36,8 +50,9 @@ class ProductDetailsActivity : AppCompatActivity() {
             category.text = product.category
             val priceFormater = NumberFormat.getCurrencyInstance(Locale.FRANCE)
             price.text = priceFormater.format(product.price)
+            addToCartButton.isVisible = product.isAvailable
             description.text = product.description
-            binding.rateStar1.setImageResource(
+            rateStar1.setImageResource(
                 when {
                     product.averageRate >= 1 -> R.drawable.ic_star_filled
                     product.averageRate >= 0.5 -> R.drawable.ic_star_half_filled
