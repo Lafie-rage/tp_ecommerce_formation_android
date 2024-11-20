@@ -8,6 +8,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.tp_ecommerce_formation_android.R
 import com.example.tp_ecommerce_formation_android.databinding.ActivityMainBinding
 import com.example.tp_ecommerce_formation_android.ui.page.account.AccountFragment
@@ -25,34 +29,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomAppBar.setOnItemSelectedListener { item ->
-            val currentFragment =
-                supportFragmentManager.findFragmentById(binding.fragmentContainerView.id)
-            val destination: Fragment = when (item.itemId) {
-                R.id.navigation_category -> CategoryFragment()
-                R.id.navigation_favorite -> FavoriteFragment()
-                R.id.navigation_account -> AccountFragment()
-                R.id.navigation_shops -> ShopFragment()
-                else -> HomeFragment()
-            }
-            if (currentFragment == null || currentFragment::class.java != destination::class.java) {
-                navigateToDestination(destination)
-            }
-            return@setOnItemSelectedListener true
-        }
+        // Récupération du NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
+        // Récupération du navController
+        val navController = navHostFragment.navController
 
-        onBackPressedDispatcher.addCallback(this) {
-            if (supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) is HomeFragment) {
-                finish()
-            } else {
-                navigateToDestination(HomeFragment())
-            }
-        }
-    }
-
-    private fun navigateToDestination(destination: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(binding.fragmentContainerView.id, destination)
-            .commit()
+        // On donne le navController à notre bottom nav bar
+        binding.bottomAppBar.setupWithNavController(navController)
     }
 }
