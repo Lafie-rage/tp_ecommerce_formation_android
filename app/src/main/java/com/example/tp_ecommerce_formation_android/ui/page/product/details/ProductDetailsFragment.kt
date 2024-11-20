@@ -1,47 +1,36 @@
 package com.example.tp_ecommerce_formation_android.ui.page.product.details
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import com.example.tp_ecommerce_formation_android.R
 import com.example.tp_ecommerce_formation_android.data.source.ProductDataSource
-import com.example.tp_ecommerce_formation_android.databinding.ActivityProductDetailsBinding
+import com.example.tp_ecommerce_formation_android.databinding.FragmentProductDetailsBinding
 import com.example.tp_ecommerce_formation_android.domain.mapper.toProductDetails
 import com.example.tp_ecommerce_formation_android.ui.page.product.details.state.ProductDetails
 import java.text.NumberFormat
 import java.util.Locale
-import java.util.UUID
 
-const val PRODUCT_ID_EXTRA_KEY = "PRODUCT_ID"
+class ProductDetailsFragment : Fragment() {
 
-class ProductDetailsActivity : AppCompatActivity() {
+    private lateinit var binding: FragmentProductDetailsBinding
 
-    private lateinit var binding: ActivityProductDetailsBinding
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityProductDetailsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-
-        val productId =
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-                intent.getSerializableExtra(PRODUCT_ID_EXTRA_KEY, UUID::class.java)!!
-            } else {
-                intent.getSerializableExtra(PRODUCT_ID_EXTRA_KEY)!! as UUID
-            }
-
+        val productId = ProductDataSource.getProducts().first().id
         val product = ProductDataSource.getById(productId)!!.toProductDetails()
 
         bind(product)
 
-        binding.toolbar.setNavigationOnClickListener {
-            finish()
-        }
+        return binding.root
     }
 
     private fun bind(product: ProductDetails) {

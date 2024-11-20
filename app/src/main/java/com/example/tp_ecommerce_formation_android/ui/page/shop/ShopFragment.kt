@@ -16,7 +16,7 @@ class ShopFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentShopBinding.inflate(layoutInflater)
+        binding = FragmentShopBinding.inflate(inflater, container, false)
         return binding.root
     }
 
