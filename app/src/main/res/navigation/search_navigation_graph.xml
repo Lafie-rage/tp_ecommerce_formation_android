@@ -28,5 +28,9 @@
     <fragment
         android:id="@+id/navigation_product_details"
         android:name="com.example.tp_ecommerce_formation_android.ui.page.product.details.ProductDetailsFragment"
-        android:label="navigation_product_details" />
+        android:label="navigation_product_details" >
+        <argument
+            android:name="productId"
+            app:argType="string" />
+    </fragment>
 </navigation>
