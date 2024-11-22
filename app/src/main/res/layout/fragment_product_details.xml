@@ -5,7 +5,8 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    tools:context=".ui.page.product.details.ProductDetailsFragment">
 
     <ImageView
         android:id="@+id/image"

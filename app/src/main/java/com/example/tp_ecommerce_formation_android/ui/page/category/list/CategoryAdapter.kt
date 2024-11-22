@@ -6,41 +6,41 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.tp_ecommerce_formation_android.R
+import com.example.tp_ecommerce_formation_android.databinding.CategoryItemBinding
 
-import com.example.tp_ecommerce_formation_android.ui.page.category.list.placeholder.PlaceholderContent.PlaceholderItem
 import com.example.tp_ecommerce_formation_android.databinding.FragmentCategoryListBinding
+import com.example.tp_ecommerce_formation_android.ui.page.category.list.state.Category
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class CategoryAdapter(
-    private val values: List<PlaceholderItem>
+    private val values: List<Category>,
+    private val onCategoryClicked: (Category) -> Unit
 ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         return ViewHolder(
-            FragmentCategoryListBinding.inflate(
+            CategoryItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
         )
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-//        holder.idView.text = item.id
-//        holder.contentView.text = item.content
+        holder.bind(values[position])
     }
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(binding: FragmentCategoryListBinding) :
+    inner class ViewHolder(private val binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        fun bind(category: Category) {
+            binding.name.text = category.name
+            binding.root.setOnClickListener {
+                onCategoryClicked(category)
+            }
+        }
     }
 
 }
