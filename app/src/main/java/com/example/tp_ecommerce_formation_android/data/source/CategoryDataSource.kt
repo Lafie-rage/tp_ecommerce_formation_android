@@ -36,5 +36,5 @@ object CategoryDataSource {
         return categories
     }
 
-    fun getById(id: UUID): CategoryDto? = categories.find { it.id == id }
+    fun getCategoryById(id: UUID): CategoryDto? = categories.find { it.id == id }
 }

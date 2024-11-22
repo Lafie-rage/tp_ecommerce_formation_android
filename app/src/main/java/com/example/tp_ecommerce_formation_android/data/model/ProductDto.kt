@@ -10,5 +10,5 @@ data class ProductDto(
     val price: Double,
     val averageRate: Double,
     val rateCount: Int,
-    val category: String,
+    val categoryId: UUID,
 )

@@ -26,7 +26,7 @@ class ProductDetailsFragment : Fragment() {
         binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
 
         val productId = ProductDataSource.getProducts().first().id
-        val product = ProductDataSource.getById(productId)!!.toProductDetails()
+        val product = ProductDataSource.getProductById(productId)!!.toProductDetails()
 
         bind(product)
 

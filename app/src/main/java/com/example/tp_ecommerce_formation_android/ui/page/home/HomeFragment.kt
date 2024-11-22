@@ -35,11 +35,6 @@ class HomeFragment : Fragment() {
         binding.carousel.adapter = adapter
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
-
     override fun onDestroyView()  {
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
         super.onDestroyView()
