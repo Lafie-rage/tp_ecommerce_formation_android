@@ -16,4 +16,5 @@
     <string name="your_last_purchases">Vos derniers achats</string>
     <string name="category_title">Catégories de produits</string>
     <string name="product_list_title">Produits</string>
+    <string name="product">Produit</string>
 </resources>
