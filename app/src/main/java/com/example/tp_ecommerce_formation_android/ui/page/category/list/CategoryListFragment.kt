@@ -5,20 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.ActivityNavigator
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.tp_ecommerce_formation_android.data.source.CategoryDataSource
-import com.example.tp_ecommerce_formation_android.data.source.CategoryDataSource.getCategories
 import com.example.tp_ecommerce_formation_android.databinding.FragmentCategoryListBinding
-import com.example.tp_ecommerce_formation_android.domain.mapper.toCategory
 import com.example.tp_ecommerce_formation_android.ui.page.category.list.state.Category
 
-/**
- * A fragment representing a list of Items.
- */
 class CategoryListFragment : Fragment() {
 
     private lateinit var binding: FragmentCategoryListBinding
+
+    private val viewModel: CategoryListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,14 +22,19 @@ class CategoryListFragment : Fragment() {
     ): View {
         binding = FragmentCategoryListBinding.inflate(inflater, container, false)
 
-        val categories = getCategories().map { it.toCategory() }
-
         // Set the adapter
-        binding.categoryList.adapter = CategoryAdapter(categories) { category ->
+        binding.categoryList.adapter = CategoryAdapter(listOf()) { category ->
             navigateToProductList(category)
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.state.observe(viewLifecycleOwner) { categories ->
+            (binding.categoryList.adapter as CategoryAdapter).categories = categories
+        }
     }
 
     private fun navigateToProductList(category: Category) {
