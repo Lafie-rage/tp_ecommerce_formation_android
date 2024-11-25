@@ -7,20 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tp_ecommerce_formation_android.databinding.FragmentProductListBinding
 import com.example.tp_ecommerce_formation_android.ui.page.product.list.state.Product
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProductListFragment : Fragment() {
 
     private lateinit var binding: FragmentProductListBinding
 
-    private val args: ProductListFragmentArgs by navArgs()
-
-    private val viewModel by viewModels<ProductListViewModel> {
-        ProductListViewModelFactory(args.categoryId)
-    }
+    private val viewModel by viewModels<ProductListViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
