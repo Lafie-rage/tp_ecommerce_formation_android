@@ -17,4 +17,6 @@
     <string name="category_title">Catégories de produits</string>
     <string name="product_list_title">Produits</string>
     <string name="product">Produit</string>
+    <string name="next">Suivant</string>
+    <string name="product_image">Image du produit %1$s</string>
 </resources>

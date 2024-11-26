@@ -1,4 +1,4 @@
-package com.example.tp_ecommerce_formation_android.ui.page.product.list
+package com.example.tp_ecommerce_formation_android.ui.page.product.list.v1
 
 import android.view.LayoutInflater
 import android.view.View

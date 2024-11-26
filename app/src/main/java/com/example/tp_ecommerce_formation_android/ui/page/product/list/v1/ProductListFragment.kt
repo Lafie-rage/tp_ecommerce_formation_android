@@ -1,4 +1,4 @@
-package com.example.tp_ecommerce_formation_android.ui.page.product.list
+package com.example.tp_ecommerce_formation_android.ui.page.product.list.v1
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tp_ecommerce_formation_android.databinding.FragmentProductListBinding
 import com.example.tp_ecommerce_formation_android.ui.page.product.list.state.Product
+import com.example.tp_ecommerce_formation_android.ui.page.product.list.v2.ProductListPage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,19 +26,23 @@ class ProductListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProductListBinding.inflate(inflater, container, false)
-
-        binding.productList.apply {
-            adapter = ProductAdapter(listOf(), ::navigateToDetails)
-            layoutManager = LinearLayoutManager(context)
-        }
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.state.observe(viewLifecycleOwner) { products ->
-            (binding.productList.adapter as ProductAdapter).products = products
+            // Il faut afficher le composable dans le observe pour que le Composable
+            // soit mis à jour en fonction de la valeur du state.
+            binding.composeView.setContent {
+                // Dans setContent, on peut appeler des Composables
+                ProductListPage(
+                    productList = products,
+                    onProductClicked = { product ->
+                        navigateToDetails(product)
+                    }
+                )
+            }
         }
     }
 

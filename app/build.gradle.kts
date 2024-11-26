@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.navigation.safe.args)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -36,6 +37,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 
     kotlinOptions {
@@ -53,6 +55,8 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
