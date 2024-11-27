@@ -20,4 +20,5 @@
     <string name="next">Suivant</string>
     <string name="product_image">Image du produit %1$s</string>
     <string name="add_to_favorite">Ajouter aux favoris</string>
+    <string name="category_image">Image de la catégorie $1%s</string>
 </resources>

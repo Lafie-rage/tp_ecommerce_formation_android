@@ -1,4 +1,4 @@
-package com.example.tp_ecommerce_formation_android.ui.page.category.list
+package com.example.tp_ecommerce_formation_android.ui.page.category.list.v1
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.tp_ecommerce_formation_android.databinding.FragmentCategoryListBinding
 import com.example.tp_ecommerce_formation_android.ui.page.category.list.state.Category
+import com.example.tp_ecommerce_formation_android.ui.page.category.list.v2.CategoryListPage
 
 class CategoryListFragment : Fragment() {
 
@@ -21,19 +22,17 @@ class CategoryListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCategoryListBinding.inflate(inflater, container, false)
-
-        // Set the adapter
-        binding.categoryList.adapter = CategoryAdapter(listOf()) { category ->
-            navigateToProductList(category)
-        }
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.state.observe(viewLifecycleOwner) { categories ->
-            (binding.categoryList.adapter as CategoryAdapter).categories = categories
+            binding.composeView.setContent {
+                CategoryListPage(categoryList = categories) { category ->
+                    navigateToProductList(category)
+                }
+            }
         }
     }
 

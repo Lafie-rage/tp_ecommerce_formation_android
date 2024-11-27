@@ -4,15 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.page.category.list.CategoryListFragment">
+    tools:context=".ui.page.category.list.v1.CategoryListFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/category_list"
-        android:name="com.example.tp_ecommerce_formation_android.ui.page.category.list.CategoryListFragment"
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/compose_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="GridLayoutManager"
-        app:spanCount="2"
-        tools:context=".ui.page.category.list.CategoryListFragment"
-        tools:listitem="@layout/category_item" />
+        android:layout_height="match_parent"/>
 </FrameLayout>

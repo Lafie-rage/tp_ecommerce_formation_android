@@ -1,4 +1,4 @@
-package com.example.tp_ecommerce_formation_android.ui.page.category.list
+package com.example.tp_ecommerce_formation_android.ui.page.category.list.v1
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
