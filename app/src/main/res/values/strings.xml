@@ -14,4 +14,6 @@
     <string name="application_name">Tech\'Shop</string>
     <string name="search_product">Rechercher un produit</string>
     <string name="your_last_purchases">Vos derniers achats</string>
+    <string name="category_title">Catégories de produits</string>
+    <string name="product_list_title">Produits</string>
 </resources>
