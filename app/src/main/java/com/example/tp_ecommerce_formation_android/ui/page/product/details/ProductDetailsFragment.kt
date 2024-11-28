@@ -6,21 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.tp_ecommerce_formation_android.R
-import com.example.tp_ecommerce_formation_android.data.source.ProductDataSource
 import com.example.tp_ecommerce_formation_android.databinding.FragmentProductDetailsBinding
-import com.example.tp_ecommerce_formation_android.domain.mapper.toProductDetails
 import com.example.tp_ecommerce_formation_android.ui.page.product.details.state.ProductDetails
 import java.text.NumberFormat
 import java.util.Locale
-import java.util.UUID
 
 class ProductDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentProductDetailsBinding
 
     private val args: ProductDetailsFragmentArgs by navArgs()
+
+    private val viewModel by viewModels<ProductDetailsViewModel> {
+        ProductDetailsViewModelFactory(args.productId)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,12 +31,14 @@ class ProductDetailsFragment : Fragment() {
     ): View {
         binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
 
-        val productId = UUID.fromString(args.productId)
-        val product = ProductDataSource.getProductById(productId)!!.toProductDetails()
-
-        bind(product)
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.state.observe(viewLifecycleOwner) { product ->
+            bind(product)
+        }
     }
 
     private fun bind(product: ProductDetails) {
