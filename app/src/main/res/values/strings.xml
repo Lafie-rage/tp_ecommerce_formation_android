@@ -3,4 +3,7 @@
     <string name="information_separator">•</string>
     <string name="available">Disponible</string>
     <string name="unavailable">Stock épuisé</string>
+    <string name="details">Détails</string>
+    <string name="add_to_cart">Ajouter au panier</string>
+    <string name="rate_count">%1$.1f/5 sur %2$d avis</string>
 </resources>
