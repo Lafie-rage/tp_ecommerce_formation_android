@@ -12,9 +12,10 @@ activity = "1.9.3"
 constraintlayout = "2.2.0"
 navigation = "2.8.4"
 hilt = "2.52"
-# ...
-composeBom = "2024.10.01"
+hiltNavigationCompose = "1.2.0"
+composeBom = "2024.11.00"
 viewModelCompose = "2.8.7"
+serialization = "1.7.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +30,7 @@ navigation-fragment = { group = "androidx.navigation", name = "navigation-fragme
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigation" }
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 material-compose = { group = "androidx.compose.material3", name = "material3" }
 preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
@@ -36,11 +38,14 @@ ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
 icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version = "viewModelCompose" }
+lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewModelCompose" }
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 
 [bundles]
-navigation = ["navigation-fragment", "navigation-ui"]
+navigation = ["navigation-fragment", "navigation-ui", "navigation-compose"]
 compose = [ "material-compose", "preview", "ui-tooling", "icons-core", "icons-extended", "activity-compose", "lifecycle-viewmodel-compose" ]
+hilt = ["hilt", "hilt-navigation-compose"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -49,3 +54,4 @@ navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
