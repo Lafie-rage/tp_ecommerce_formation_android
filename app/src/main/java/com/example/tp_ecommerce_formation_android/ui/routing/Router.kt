@@ -4,7 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.tp_ecommerce_formation_android.ui.routing.navigation.search.createCategoryListNavigation
+import com.example.tp_ecommerce_formation_android.ui.routing.navigation.search.createProductDetailsNavigation
 import com.example.tp_ecommerce_formation_android.ui.routing.navigation.search.createProductListNavigation
+import com.example.tp_ecommerce_formation_android.ui.routing.navigation.search.navigateToProductDetails
 import com.example.tp_ecommerce_formation_android.ui.routing.navigation.search.navigateToProductList
 
 @Composable
@@ -23,8 +25,10 @@ fun Router() {
             navigateToProductList = navController::navigateToProductList
         )
 
-        createProductListNavigation {
-            // On appellera la fonction de navigation vers ProductDetailsPage lorsqu'elle sera définie
-        }
+        createProductListNavigation(
+            navigateToProductDetails = navController::navigateToProductDetails
+        )
+
+        createProductDetailsNavigation()
     }
 }
