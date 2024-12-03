@@ -1,4 +1,4 @@
-package com.example.tp_ecommerce_formation_android.ui.page.product.details.v2
+package com.example.tp_ecommerce_formation_android.ui.page.product.details
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -17,8 +17,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.tp_ecommerce_formation_android.R
 import com.example.tp_ecommerce_formation_android.ui.page.product.details.state.ProductDetails
-import com.example.tp_ecommerce_formation_android.ui.page.product.details.v1.ProductDetailsViewModel
 import java.text.NumberFormat
 import java.util.UUID
 

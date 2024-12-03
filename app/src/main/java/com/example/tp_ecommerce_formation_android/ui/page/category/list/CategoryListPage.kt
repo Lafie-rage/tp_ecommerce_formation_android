@@ -1,4 +1,4 @@
-package com.example.tp_ecommerce_formation_android.ui.page.category.list.v2
+package com.example.tp_ecommerce_formation_android.ui.page.category.list
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +15,6 @@ import com.example.tp_ecommerce_formation_android.data.source.CategoryDataSource
 import com.example.tp_ecommerce_formation_android.domain.mapper.toCategory
 import com.example.tp_ecommerce_formation_android.ui.component.category.CategoryItem
 import com.example.tp_ecommerce_formation_android.ui.page.category.list.state.Category
-import com.example.tp_ecommerce_formation_android.ui.page.category.list.v1.CategoryListViewModel
 
 // Le Composable principal est simplement responsable de récupérer le viewModel
 // et de transmettre le state décomposé au Composable Page

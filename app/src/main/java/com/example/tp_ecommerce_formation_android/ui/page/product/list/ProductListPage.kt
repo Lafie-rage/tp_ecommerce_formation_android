@@ -1,4 +1,4 @@
-package com.example.tp_ecommerce_formation_android.ui.page.product.list.v2
+package com.example.tp_ecommerce_formation_android.ui.page.product.list
 
 import android.widget.Toast
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,12 +8,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tp_ecommerce_formation_android.data.source.ProductDataSource
 import com.example.tp_ecommerce_formation_android.domain.mapper.toProduct
 import com.example.tp_ecommerce_formation_android.ui.component.product.ProductItem
 import com.example.tp_ecommerce_formation_android.ui.page.product.list.state.Product
-import com.example.tp_ecommerce_formation_android.ui.page.product.list.v1.ProductListViewModel
 
 @Composable
 fun ProductListPage(
@@ -29,7 +27,6 @@ fun ProductListPage(
             onProductClicked = onProductClicked,
         )
     }
-
 }
 
 @Composable

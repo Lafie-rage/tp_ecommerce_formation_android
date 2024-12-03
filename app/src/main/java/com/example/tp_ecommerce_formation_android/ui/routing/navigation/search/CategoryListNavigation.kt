@@ -2,7 +2,7 @@ package com.example.tp_ecommerce_formation_android.ui.routing.navigation.search
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.tp_ecommerce_formation_android.ui.page.category.list.v2.CategoryListPage
+import com.example.tp_ecommerce_formation_android.ui.page.category.list.CategoryListPage
 import com.example.tp_ecommerce_formation_android.ui.routing.SearchRoutes
 import java.util.UUID
 

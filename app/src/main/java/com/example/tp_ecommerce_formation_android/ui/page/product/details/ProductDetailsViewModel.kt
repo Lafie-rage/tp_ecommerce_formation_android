@@ -1,4 +1,4 @@
-package com.example.tp_ecommerce_formation_android.ui.page.product.details.v1
+package com.example.tp_ecommerce_formation_android.ui.page.product.details
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
