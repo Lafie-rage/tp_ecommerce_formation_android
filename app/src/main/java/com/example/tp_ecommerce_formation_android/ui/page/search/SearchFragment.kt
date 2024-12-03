@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.example.tp_ecommerce_formation_android.databinding.FragmentSearchBinding
+import com.example.tp_ecommerce_formation_android.ui.routing.Router
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,12 +22,8 @@ class SearchFragment : Fragment() {
     ): View {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        val navHostFragment =
-            childFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
-        val navController = navHostFragment.navController
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            (requireActivity() as AppCompatActivity).supportActionBar!!.title = destination.label
+        binding.composeView.setContent {
+            Router()
         }
 
         return binding.root

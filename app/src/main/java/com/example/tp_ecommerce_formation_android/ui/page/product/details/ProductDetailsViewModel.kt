@@ -1,18 +1,34 @@
 package com.example.tp_ecommerce_formation_android.ui.page.product.details
 
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.tp_ecommerce_formation_android.data.source.ProductDataSource
+import androidx.navigation.toRoute
+import com.example.tp_ecommerce_formation_android.data.repository.ProductRepository
 import com.example.tp_ecommerce_formation_android.domain.mapper.toProductDetails
-import com.example.tp_ecommerce_formation_android.ui.page.product.details.state.ProductDetails
+import com.example.tp_ecommerce_formation_android.ui.page.product.details.state.ProductDetailsState
+import com.example.tp_ecommerce_formation_android.ui.routing.SearchRoutes
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.UUID
+import javax.inject.Inject
 
-class ProductDetailsViewModel(
-    productId: UUID,
-): ViewModel() {
-    private val _state: MutableLiveData<ProductDetails> = MutableLiveData(
-        ProductDataSource.getProductById(productId)!!.toProductDetails()
-    )
-    val state: MutableLiveData<ProductDetails>
+@HiltViewModel
+class ProductDetailsViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
+    private val repository: ProductRepository,
+) : ViewModel() {
+
+    private val navArgs = savedStateHandle.toRoute<SearchRoutes.ProductDetailsRoute>()
+    private val productId = UUID.fromString(navArgs.productId)
+
+    private val _state: MutableState<ProductDetailsState> = buildState()
+
+    val state: State<ProductDetailsState>
         get() = _state
+
+    private fun buildState(): MutableState<ProductDetailsState> = mutableStateOf(
+        ProductDetailsState(repository.getById(productId)!!.toProductDetails())
+    )
 }

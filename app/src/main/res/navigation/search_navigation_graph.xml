@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_category_list"
-        android:name="com.example.tp_ecommerce_formation_android.ui.page.category.list.CategoryListFragment"
+        android:name="com.example.tp_ecommerce_formation_android.ui.page.category.list.v1.CategoryListFragment"
         android:label="@string/category_title" >
         <action
             android:id="@+id/action_navigation_category_list_to_navigation_product_list"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_product_list"
-        android:name="com.example.tp_ecommerce_formation_android.ui.page.product.list.ProductListFragment"
+        android:name="com.example.tp_ecommerce_formation_android.ui.page.product.list.v1.ProductListFragment"
         android:label="@string/product_list_title"
         tools:layout="@layout/fragment_product_list" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_product_details"
-        android:name="com.example.tp_ecommerce_formation_android.ui.page.product.details.ProductDetailsFragment"
+        android:name="com.example.tp_ecommerce_formation_android.ui.page.product.details.v1.ProductDetailsFragment"
         android:label="@string/product" >
         <argument
             android:name="productId"
