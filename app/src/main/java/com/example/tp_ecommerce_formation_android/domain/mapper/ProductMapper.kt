@@ -2,7 +2,6 @@ package com.example.tp_ecommerce_formation_android.domain.mapper
 
 import com.example.tp_ecommerce_formation_android.data.local.model.ProductEntity
 import com.example.tp_ecommerce_formation_android.data.model.ProductDto
-import com.example.tp_ecommerce_formation_android.data.source.CategoryDataSource.getCategoryById
 import com.example.tp_ecommerce_formation_android.ui.page.home.state.LastPurchasedProduct
 import com.example.tp_ecommerce_formation_android.ui.page.product.details.state.ProductDetails
 import com.example.tp_ecommerce_formation_android.ui.page.product.list.state.Product

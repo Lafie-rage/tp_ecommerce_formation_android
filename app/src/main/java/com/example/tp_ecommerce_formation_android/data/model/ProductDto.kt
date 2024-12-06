@@ -1,7 +1,5 @@
 package com.example.tp_ecommerce_formation_android.data.model
 
-import java.util.UUID
-
 data class ProductDto(
     val id: Int,
     val name: String,
@@ -10,5 +8,5 @@ data class ProductDto(
     val price: Double,
     val averageRate: Double,
     val rateCount: Int,
-    val categoryId: UUID,
+    val categoryId: Int,
 )

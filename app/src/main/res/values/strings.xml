@@ -22,6 +22,7 @@
     <string name="add_to_favorite">Ajouter aux favoris</string>
     <string name="category_image">Image de la catégorie $1%s</string>
     <string name="empty_product_list">Aucun produit correspondant à votre recherche</string>
+    <string name="error_while_loading_category_list">Une erreur est servenue lors du chargement des catégories. Veuillez réessayer plus tard.</string>
     <string name="error_while_loading_product_list">Une erreur est servenue lors du chargement des produits. Veuillez réessayer plus tard.</string>
     <string name="error_while_loading_product">Une erreur est servenue lors du chargement de ce produit. Veuillez réessayer plus tard.</string>
 </resources>

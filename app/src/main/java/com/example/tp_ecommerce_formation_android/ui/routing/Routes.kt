@@ -9,7 +9,7 @@ sealed class SearchRoutes {
 
     @Serializable
     data class ProductListRoute(
-        val categoryId: String,
+        val categoryId: Int,
     ): SearchRoutes()
 
     @Serializable

@@ -5,7 +5,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.tp_ecommerce_formation_android.ui.page.product.list.ProductListPage
 import com.example.tp_ecommerce_formation_android.ui.routing.SearchRoutes
-import java.util.UUID
 
 fun NavGraphBuilder.createProductListNavigation(
     navigateToProductDetails: (Int) -> Unit,
@@ -19,10 +18,10 @@ fun NavGraphBuilder.createProductListNavigation(
     }
 }
 
-fun NavController.navigateToProductList(categoryId: UUID) {
+fun NavController.navigateToProductList(categoryId: Int) {
     // On définit notre destination, à la manière d'un Intent ou d'un action de Jetpack Navigation
     // On passe par les routes définies précédemment
-    val route = SearchRoutes.ProductListRoute(categoryId.toString())
+    val route = SearchRoutes.ProductListRoute(categoryId)
 
     // On appel la fonction navigate du navController pour lancer la navigation vers notre route
     // Le router cherchera ensuite dans les routes définies, un route répondant au type qu'on lui a donné.

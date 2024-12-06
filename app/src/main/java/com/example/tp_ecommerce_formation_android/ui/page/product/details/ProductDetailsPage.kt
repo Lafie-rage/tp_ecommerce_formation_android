@@ -30,6 +30,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.tp_ecommerce_formation_android.R
+import com.example.tp_ecommerce_formation_android.ui.component.shared.ErrorPage
+import com.example.tp_ecommerce_formation_android.ui.component.shared.Loader
 import com.example.tp_ecommerce_formation_android.ui.page.product.details.state.ProductDetails
 import com.example.tp_ecommerce_formation_android.ui.page.product.details.state.ProductDetailsState
 import com.example.tp_ecommerce_formation_android.ui.page.product.list.state.ProductListState
@@ -42,13 +44,8 @@ fun ProductDetailsPage(
 ) {
     val state by viewModel.state
 
-    when(state) {
-        is ProductDetailsState.Loading -> Box(
-            modifier = Modifier.padding(top = 16.dp),
-            contentAlignment = Alignment.TopCenter
-        ) {
-            CircularProgressIndicator()
-        }
+    when (state) {
+        is ProductDetailsState.Loading -> Loader()
 
         is ProductDetailsState.Success -> {
             val product = (state as ProductDetailsState.Success).product
@@ -56,10 +53,13 @@ fun ProductDetailsPage(
                 product = product,
             )
         }
+
         is ProductDetailsState.Error -> {
             val message = (state as ProductDetailsState.Error).message
-            Toast.makeText(LocalContext.current, "Error due to $message", Toast.LENGTH_SHORT).show()
-            Text(text = stringResource(R.string.error_while_loading_product))
+            ErrorPage(
+                reason = message,
+                userMessage = stringResource(R.string.error_while_loading_product),
+            )
         }
     }
 }
@@ -144,9 +144,11 @@ fun Page(
                         product.averageRate >= it + 1 -> {
                             R.drawable.ic_star_filled
                         }
+
                         product.averageRate >= it + 0.5 -> {
                             R.drawable.ic_star_half_filled
                         }
+
                         else -> {
                             R.drawable.ic_star_outlined
                         }

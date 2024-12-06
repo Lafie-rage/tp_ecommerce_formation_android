@@ -7,27 +7,27 @@ object CategoryDataSource {
 
     private val categories = listOf(
         CategoryDto(
-            id = UUID.randomUUID(),
+            id = 1,
             name = "Vêtements"
         ),
         CategoryDto(
-            id = UUID.randomUUID(),
+            id = 2,
             name = "Accessoires"
         ),
         CategoryDto(
-            id = UUID.randomUUID(),
+            id = 3,
             name = "Chaussures"
         ),
         CategoryDto(
-            id = UUID.randomUUID(),
+            id = 4,
             name = "Électroménager"
         ),
         CategoryDto(
-            id = UUID.randomUUID(),
+            id = 5,
             name = "Livres"
         ),
         CategoryDto(
-            id = UUID.randomUUID(),
+            id = 6,
             name = "Sports",
         ),
     )
@@ -36,5 +36,4 @@ object CategoryDataSource {
         return categories
     }
 
-    fun getCategoryById(id: UUID): CategoryDto? = categories.find { it.id == id }
 }

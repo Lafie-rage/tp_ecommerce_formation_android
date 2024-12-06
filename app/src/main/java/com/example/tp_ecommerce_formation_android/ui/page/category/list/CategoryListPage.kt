@@ -9,12 +9,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.tp_ecommerce_formation_android.R
 import com.example.tp_ecommerce_formation_android.data.source.CategoryDataSource
 import com.example.tp_ecommerce_formation_android.domain.mapper.toCategory
 import com.example.tp_ecommerce_formation_android.ui.component.category.CategoryItem
+import com.example.tp_ecommerce_formation_android.ui.component.shared.ErrorPage
+import com.example.tp_ecommerce_formation_android.ui.component.shared.Loader
 import com.example.tp_ecommerce_formation_android.ui.page.category.list.state.Category
+import com.example.tp_ecommerce_formation_android.ui.page.category.list.state.CategoryListState
 
 // Le Composable principal est simplement responsable de récupérer le viewModel
 // et de transmettre le state décomposé au Composable Page
@@ -28,11 +33,23 @@ fun CategoryListPage(
     // On couple le state au Composable grâce à la délégation
     val state by viewModel.state
 
-    state.apply {
-        Page(
-            categoryList = categories,
-            onCategoryClicked = onCategoryClicked,
-        )
+    when (state) {
+        is CategoryListState.Loading -> Loader()
+        is CategoryListState.Success -> {
+            val categories = (state as CategoryListState.Success).categories
+            Page(
+                categoryList = categories,
+                onCategoryClicked = onCategoryClicked,
+            )
+        }
+
+        is CategoryListState.Error -> {
+            val message = (state as CategoryListState.Error).message
+            ErrorPage(
+                reason = message,
+                userMessage = stringResource(R.string.error_while_loading_category_list),
+            )
+        }
     }
 }
 
