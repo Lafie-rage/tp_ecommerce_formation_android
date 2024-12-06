@@ -3,7 +3,7 @@ package com.example.tp_ecommerce_formation_android.data.model
 import java.util.UUID
 
 data class ProductDto(
-    val id: UUID,
+    val id: Int,
     val name: String,
     val description: String,
     val isAvailable: Boolean,

@@ -110,7 +110,7 @@ fun ProductItemPreview() {
     val context = LocalContext.current
     ProductItem(
         product = Product(
-            id = UUID.randomUUID(),
+            id = 1,
             name = "T-shirt",
             description = "Un t-shirt classique en coton.",
             isAvailable = true,

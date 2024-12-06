@@ -14,6 +14,6 @@ sealed class SearchRoutes {
 
     @Serializable
     data class ProductDetailsRoute(
-        val productId: String,
+        val productId: Int,
     ): SearchRoutes()
 }

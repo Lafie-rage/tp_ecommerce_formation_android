@@ -13,6 +13,6 @@ fun NavGraphBuilder.createProductDetailsNavigation() {
     }
 }
 
-fun NavController.navigateToProductDetails(productId: UUID) {
-    navigate(SearchRoutes.ProductDetailsRoute(productId.toString()))
+fun NavController.navigateToProductDetails(productId: Int) {
+    navigate(SearchRoutes.ProductDetailsRoute(productId))
 }

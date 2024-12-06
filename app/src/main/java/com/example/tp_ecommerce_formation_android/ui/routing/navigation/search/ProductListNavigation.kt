@@ -8,7 +8,7 @@ import com.example.tp_ecommerce_formation_android.ui.routing.SearchRoutes
 import java.util.UUID
 
 fun NavGraphBuilder.createProductListNavigation(
-    navigateToProductDetails: (UUID) -> Unit,
+    navigateToProductDetails: (Int) -> Unit,
 ) {
     composable<SearchRoutes.ProductListRoute> {
         ProductListPage(

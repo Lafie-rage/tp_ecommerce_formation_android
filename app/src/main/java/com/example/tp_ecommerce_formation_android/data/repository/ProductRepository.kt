@@ -1,18 +1,23 @@
 package com.example.tp_ecommerce_formation_android.data.repository
 
+import com.example.tp_ecommerce_formation_android.data.local.dao.ProductDao
 import com.example.tp_ecommerce_formation_android.data.model.ProductDto
 import com.example.tp_ecommerce_formation_android.data.source.ProductDataSource
+import com.example.tp_ecommerce_formation_android.domain.mapper.toDto
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ProductRepository @Inject constructor() {
+class ProductRepository @Inject constructor(
+    private val dao: ProductDao,
+) {
 
-    fun getAll(): List<ProductDto> = ProductDataSource.getProducts()
+    suspend fun getAll(): List<ProductDto> = dao.getAll()
+        .map { it.toDto() }
 
-    fun getAllByCategoryId(categoryId: UUID): List<ProductDto> =
-        ProductDataSource.getProductsByCategoryId(categoryId)
+    suspend fun getAllByCategoryId(categoryId: UUID): List<ProductDto> =
+        dao.getByCategoryId(categoryId).map { it.toDto() }
 
-    fun getById(id: UUID): ProductDto? = ProductDataSource.getProductById(id)
+    suspend fun getById(id: Int): ProductDto? = dao.getById(id)?.toDto()
 }
