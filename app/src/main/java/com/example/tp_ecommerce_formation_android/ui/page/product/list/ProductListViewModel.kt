@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.example.tp_ecommerce_formation_android.data.repository.ProductRepository
+import com.example.tp_ecommerce_formation_android.data.source.ProductDataSource
 import com.example.tp_ecommerce_formation_android.domain.mapper.toProduct
 import com.example.tp_ecommerce_formation_android.ui.page.product.list.state.ProductListState
 import com.example.tp_ecommerce_formation_android.ui.routing.SearchRoutes
@@ -34,12 +35,12 @@ class ProductListViewModel @Inject constructor(
         get() = _state
 
     init {
-        // Les ViewModels propose un "scope" qui est un objet permettant d'accéder à un contexte
-        // dans lequel on peut lancer des coroutines sans rendre notre code bloquant
         viewModelScope.launch {
-            // A l'intérieur de launch, on est dans le contexte de la coroutine
+            // On lance d'abord le prepopulate
+            ProductDataSource.getProducts().forEach { product ->
+                repository.upsert(product)
+            }
 
-            // Ajoutons un delay de 2 secondes avant l'affichage des données pour voir notre loader
             delay(1_000)
 
             _state.value = repository.getAllByCategoryId(categoryId)

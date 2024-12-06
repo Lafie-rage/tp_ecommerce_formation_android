@@ -6,10 +6,25 @@ import com.example.tp_ecommerce_formation_android.data.source.CategoryDataSource
 import com.example.tp_ecommerce_formation_android.ui.page.home.state.LastPurchasedProduct
 import com.example.tp_ecommerce_formation_android.ui.page.product.details.state.ProductDetails
 import com.example.tp_ecommerce_formation_android.ui.page.product.list.state.Product
+import java.util.UUID
 
 // region ENTITY -> DTO
 fun ProductEntity.toDto() = ProductDto(
     id = localId,
+    name = name,
+    description = description,
+    isAvailable = isAvailable,
+    price = price,
+    averageRate = averageRate,
+    rateCount = rateCount,
+    categoryId = categoryId,
+)
+// endregion
+
+// region DTO -> ENTITY
+fun ProductDto.toEntity() = ProductEntity(
+    localId = id,
+    remoteId = UUID.randomUUID(),
     name = name,
     description = description,
     isAvailable = isAvailable,
